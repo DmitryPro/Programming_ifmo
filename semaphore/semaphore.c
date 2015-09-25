@@ -48,7 +48,11 @@ void receive(short type){
 	    }
 	}
 }
+
+
 /**
+from msgrcv() docs:
+
 If no message of the requested type is available and IPC_NOWAIT isn't specified in msgflg,
  the calling process is blocked until one of the following conditions occurs:
  1. A message of the desired type is placed in the queue.
@@ -56,6 +60,13 @@ If no message of the requested type is available and IPC_NOWAIT isn't specified 
  3. The calling process catches a signal. In this case the system call fails with errno set to EINTR. (msgrcv()
   is never automatically restarted after being interrupted by a signal handler, regardless of the setting of the
    SA_RESTART flag when establishing a signal handler.)
+   
+from control server :
+   	receive(1);
+	send(2);
+	
+next operations p() will be blocked until current thread don't execute V().
+
 
 **/
 
