@@ -48,6 +48,16 @@ void receive(short type){
 	    }
 	}
 }
+/**
+If no message of the requested type is available and IPC_NOWAIT isn't specified in msgflg,
+ the calling process is blocked until one of the following conditions occurs:
+ 1. A message of the desired type is placed in the queue.
+ 2. The message queue is removed from the system. In this case the system call fails with errno set to EIDRM.
+ 3. The calling process catches a signal. In this case the system call fails with errno set to EINTR. (msgrcv()
+  is never automatically restarted after being interrupted by a signal handler, regardless of the setting of the
+   SA_RESTART flag when establishing a signal handler.)
+
+**/
 
 void P(){
 	send(1);
